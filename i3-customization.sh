@@ -1,11 +1,11 @@
 #!/bin/bash
 
-#===================================================#
-# Autor: jirrezdex                                  #
-# Github: https://github.com/jirrezdex/archlinux-i3 #
-# Script feito por leo.arch                         #
-# Github: https://github.com/leoarch/arch-install   #
-#===================================================#
+#===========================================================#
+# Autor: jirrezdex                                          #
+# Github: https://github.com/jirrezdex/archlinux-i3         #
+# Script feito por leo.arch                                 #
+# Github: https://github.com/leoarch/arch-i3-customization  #
+#===========================================================#
 
 # instalando yay (AUR)
 echo -e "${_g}===> Instalando yay (AUR)${_o}"; sleep 1
@@ -19,7 +19,7 @@ pacman -S ark compton dunst expac fakeroot feh git i3-gaps jshon notify-osd rofi
 yay -S polybar ttf-font-awesome-4 --noconfirm
 
 echo -e "${_g}===> Baixar os arquivos da configuração e acessando os arquivos de configurações${_o}"; sleep 1
-git clone https://github.com/jirrezdex/archlinux-i3.git && cd archlinux-i3
+git clone https://github.com/leoarch/arch-i3-customization.git && cd arch-i3-customization
 
 # i3
 echo -e "${_g}===> Mover os arquivos do ~/.config/i3 e dar permissão${_o}"; sleep 1
