@@ -4,7 +4,7 @@
 # Autor: jirrezdex                                          #
 # Github: https://github.com/jirrezdex/archlinux-i3         #
 # Script feito por leo.arch                                 #
-# Github: https://github.com/leoarch/arch-i3-customization  #
+# Github: https://github.com/leoarch/arch-install           #
 #===========================================================#
 
 # instalando yay (AUR)
@@ -15,14 +15,14 @@ cd yaygit
 wget https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz 
 tar -xvzf yay.tar.gz && cd yay && makepkg -si
 
-pacman -S ark compton dunst expac fakeroot feh git i3-gaps jshon notify-osd rofi scrot sddm termite tumbler p7zip unzip zip --noconfirm
+pacman -S ark compton dunst expac fakeroot feh git i3-gaps jshon notify-osd rofi scrot termite p7zip unzip zip unrar --noconfirm
 yay -S polybar ttf-font-awesome-4 --noconfirm
 
 echo -e "${_g}===> Baixar os arquivos da configuração e acessando os arquivos de configurações${_o}"; sleep 1
-git clone https://github.com/leoarch/arch-i3-customization.git
+git clone https://github.com/jirrezdex/archlinux-i3.git
 
 echo -e "${_g}===> Entrando na pasta arch-i3-customization${_o}"; sleep 1
-cd arch-i3-customization
+cd archlinux-i3
 
 # i3
 echo -e "${_g}===> Mover os arquivos do ~/.config/i3 e dar permissão${_o}"; sleep 1
