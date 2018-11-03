@@ -1,0 +1,187 @@
+# www.jirrezdex.com
+# contato@jirrezdex.com
+# Jirrez Matheus
+
+set $mod Mod4
+
+font pango:monospace 8
+
+floating_modifier $mod
+
+################### CONTROLE DE FOCO
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+################### JANELAS
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+################### CONTROELE I3
+bindsym $mod+Shift+c reload
+
+bindsym $mod+Shift+r restart
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Você está prestes a encerrar a sessão do I3, deseja continuar?' -b 'Sim, encerrar!' 'i3-msg exit'"
+
+################### DIMENSÕES1
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+########################## GAPS
+for_window [class="^.*"] border pixel 0
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+################### BÁSICO
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/i3/basico.sh
+exec --no-startup-id compton -b
+exec --no-startup-id dunst
+
+################### DEFINIÇÕES
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="Google-chrome" title="Save File"] floating enable
+for_window [class="Firefox" title="Save File"] floating enable
+
+for_window [class="Spotify"] move to workspace $WS6
+for_window [class="Mailspring"] move to workspace $WS9
+
+assign [class="(Termite)"] $ws1
+assign [class="^Google-chrome"] $ws2
+assign [class="(^Code*)"] $ws3
+assign [class="^(Thunar)"] $ws4
+assign [class="(^Telegram)"] $ws5
+assign [class="(vlc)"] $ws6
+assign [class="(Wps|Wpp|Et|^draw.io)"] $ws7
+assign [class="(Gimp|Blender|Inkscape)"] $ws8
+assign [class="(Mailspring)"] $ws9
+assign [class="()"] $ws10
+
+
+################### PRIMÁRIO
+binDsym $mod+Return exec i3-sensible-terminal
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+d exec rofi -show run -display-run "Executar -"
+
+bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Imagens/Screenshots/' && notify-send ' Screenshot salva no diretório' Imagens/Screenshots
+
+################### SECUNDÁRIO
+bindsym $mod+g exec google-chrome-stable
+bindsym $mod+n exec google-chrome-stable -e https://www.netflix.com/
+bindsym $mod+t exec thunar
