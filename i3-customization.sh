@@ -19,10 +19,10 @@ pacman -S ark compton dunst expac fakeroot feh git i3-gaps jshon notify-osd rofi
 yay -S polybar ttf-font-awesome-4 --noconfirm
 
 echo -e "${_g}===> Baixar os arquivos da configuração e acessando os arquivos de configurações${_o}"; sleep 1
-git clone https://github.com/jirrezdex/archlinux-i3.git
+git clone https://github.com/leoarch/arch-i3-customization.git
 
 echo -e "${_g}===> Entrando na pasta arch-i3-customization${_o}"; sleep 1
-cd archlinux-i3
+cd arch-i3-customization
 
 # i3
 echo -e "${_g}===> Mover os arquivos do ~/.config/i3 e dar permissão${_o}"; sleep 1
@@ -84,6 +84,9 @@ sudo mv termite/ /etc/xdg/
 
 echo -e "${_g}===> Criar diretórios necessários${_o}"; sleep 1
 mkdir ~/Imagens/Screenshots
+
+echo -e "${_g}===> Apagando pasta do git${_o}"; sleep 1
+sudo rm -dR ~/archlinux-i3
 
 
 
