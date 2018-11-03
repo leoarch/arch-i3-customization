@@ -24,7 +24,7 @@ git clone https://github.com/jirrezdex/archlinux-i3.git && cd archlinux-i3
 # i3
 echo -e "${_g}===> Mover os arquivos do ~/.config/i3 e dar permissão${_o}"; sleep 1
 
-if [ -d "${HOME}/.config/i3"]; then
+if [ -d "${HOME}/.config/i3" ]; then
 	rm -dR ~/.config/i3
 fi
 
@@ -68,7 +68,6 @@ if [ -d "${HOME}/Imagens" ]; then
 fi
 
 mkdir ~/Imagens
-sudo rm -dR ~/Imagens/W1.png
 mv W1.png ~/Imagens
 
 # termite
