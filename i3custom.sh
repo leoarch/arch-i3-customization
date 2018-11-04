@@ -10,24 +10,24 @@
 # cores
 _g="\e[32;1m";_o="\e[m"
 
-echo -e "${_g}===> Pacotes necessários para instalar PACKER (AUR)${_o}"; sleep 1
-sudo pacman -S git jshon expac --noconfirm
+echo -e "${_g}===> Pacotes necessários para instalar yay (AUR)${_o}"; sleep 1
+sudo pacman -S git --noconfirm
 
-echo -e "${_g}===> Instalando gerenciador AUR (PACKER)${_o}"; sleep 1
-wget https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer
-mv PKGBUILD\?h\=packer PKGBUILD
-makepkg
-sudo pacman -U packer-*.pkg.tar.xz
+# instalando yay (AUR)
+echo -e "${_g}===> Instalando yay (AUR)${_o}"; sleep 1
+cd ${HOME}
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
 
-pacman -S ark compton dunst expac fakeroot feh git gvfs i3-gaps jshon notify-osd p7zip rofi scrot terminus-font termite ttf-dejavu ttf-font-awesome tumbler unzip xorg-xrandr zip --noconfirm
+echo -e "${_g}===> Instalando pacotes essenciais para o funcionamento do sistema${_o}"; sleep 1
+sudo pacman -S ark compton dunst fakeroot feh git gvfs i3-gaps notify-osd p7zip rofi scrot terminus-font termite ttf-dejavu ttf-font-awesome tumbler unziz zip --noconfirm
 
-packer -S polybar ttf-font-awesome-4 --noconfirm
+echo -e "${_g}===> Instalando polybar e font-awesome-4${_o}"; sleep 1
+yay -S polybar ttf-font-awesome-4 --noconfirm
 
 echo -e "${_g}===> Baixar os arquivos da configuração e acessando os arquivos de configurações${_o}"; sleep 1
-git clone https://github.com/leoarch/archlinux-i3.git
-
-echo -e "${_g}===> Entrando na pasta arch-i3-customization${_o}"; sleep 1
-cd archlinux-i3
+git clone https://github.com/leoarch/archlinux-i3.git && cd archlinux-i3
 
 # i3
 if [ -d "${HOME}/.config/i3" ]; then
