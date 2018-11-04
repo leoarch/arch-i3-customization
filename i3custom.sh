@@ -30,19 +30,27 @@ echo -e "${_g}===> Baixar os arquivos da configuração e acessando os arquivos 
 git clone https://github.com/jirrezdex/archlinux-i3.git && cd archlinux-i3
 
 # i3
-if [ -d "${HOME}/.config/i3" ]; then
-	echo -e "${_g}===> Removendo diretório i3${_o}"; sleep 1
-	rm -rf ~/.config/i3
+if [ -e "${HOME}/.config/i3/config" ]
+then
+	echo -e "${_g}===> Removendo arquivo /i3/config${_o}"; sleep 1
+	rm -rf ~/.config/i3/config
+elif [ -e "${HOME}/.config/i3/basico.sh" ]
+then
+	echo -e "${_g}===> Removendo arquivo /i3/basico.sh${_o}"; sleep 1
+	rm -rf ~/.config/i3/basico.sh
 fi
 
-echo -e "${_g}===> Mover os arquivos do ~/.config/i3 e dar permissão${_o}"; sleep 1
+echo -e "${_g}===> Movendo os arquivos do ~/.config/i3 e dar permissões${_o}"; sleep 1
 mv i3/ ~/.config
 chmod +x ~/.config/i3/basico.sh
 
 # polybar
-if [ -d "${HOME}/.config/polybar" ]; then
-	echo -e "${_g}===> Removendo diretório polybar${_o}"; sleep 1
-	sudo rm -rf ~/.config/polybar
+if [ -e "${HOME}/.config/polybar/config" ]; then
+	echo -e "${_g}===> Removendo arquivo /polybar/config${_o}"; sleep 1
+	sudo rm -rf ~/.config/polybar/config
+elif [ -e "${HOME}/.config/polybar/launch.sh" ]; then
+	echo -e "${_g}===> Removendo arquivo /polybar/launch.sh${_o}"; sleep 1
+	rm -rf ~/.config/polybar/launch.sh
 fi
 
 echo -e "${_g}===> Mover os arquivos do ~/.config/polybar e dar permissão${_o}"; sleep 1
@@ -50,45 +58,58 @@ mv polybar/ ~/.config
 chmod +x ~/.config/polybar/launch.sh
 
 # dunst
-if [ -d "${HOME}/.config/dunst" ]; then
-	echo -e "${_g}===> Removendo diretório dunst${_o}"; sleep 1
-	sudo rm -rf ~/.config/dunst
+if [ -e "${HOME}/.config/dunst/dunstrc" ]; then
+	echo -e "${_g}===> Removendo arquivo /dunst/dunstrc${_o}"; sleep 1
+	sudo rm -rf ~/.config/dunst/dunstrc
 fi
 
 echo -e "${_g}===> Mover os arquivos do ~/.config/dunst${_o}"; sleep 1
 mv dunst/ ~/.config
 
 # rofi
-if [ -d "${HOME}/.config/rofi" ]; then
-	echo -e "${_g}===> Removendo diretório rofi${_o}"; sleep 1
-	sudo rm -rf ~/.config/rofi
+if [ -e "${HOME}/.config/rofi/config" ]
+then
+	echo -e "${_g}===> Removendo arquivo /rofi/config${_o}"; sleep 1
+	sudo rm -rf ~/.config/rofi/config
 fi
 
 echo -e "${_g}===> Mover os arquivos do ~/.config/rofi${_o}"; sleep 1
 mv rofi/ ~/.config
+
+# .dex.rasi
+if [ -e "${HOME}/.dex.rasi" ]
+then
+	echo -e "${_g}===> Removendo arquivo .dex.rasi${_o}"; sleep 1
+	sudo rm -rf ~/.dex.rasi
+fi
+
 mv .dex.rasi ~
 
 # imagens
-if [ -d "${HOME}/Imagens" ]; then
-	echo -e "${_g}===> Removendo diretório Imagens${_o}"; sleep 1
-	sudo rm -rf ~/Imagens
+if [ ! -d "${HOME}/Imagens" ]
+then
+	echo -e "${_g}===> Criando diretório /Imagens${_o}"; sleep 1
+	mkdir ~/Imagens
+elif [ ! -e "${HOME}/Imagens/W1.png" ]
+then
+	mv W1.png ~/Imagens
 fi
 
-echo -e "${_g}===> Mover os arquivos do ~/Imagens${_o}"; sleep 1
-mkdir ~/Imagens
-mv W1.png ~/Imagens
-
 # termite
-if [ -d "/etc/xdg/termite" ]; then
-	echo -e "${_g}===> Removendo diretório termite${_o}"; sleep 1
-	sudo rm -rf /etc/xdg/termite
+if [ -e "/etc/xdg/termite/config" ]
+then
+	echo -e "${_g}===> Removendo arquivo /termite/config${_o}"; sleep 1
+	sudo rm -rf /etc/xdg/termite/config
 fi
 
 echo -e "${_g}===> Mover os arquivos do /etc/xdg/termite${_o}"; sleep 1
 sudo mv termite/ /etc/xdg/
 
 echo -e "${_g}===> Criar diretórios necessários${_o}"; sleep 1
-mkdir ~/Imagens/Screenshots
+if [ ! -d "${HOME}/Imagens/Screenshots" ]
+then
+	mkdir ~/Imagens/Screenshots
+fi
 
 echo -e "${_g}===> Apagando pasta do git${_o}"; sleep 1
 sudo rm -rf ~/archlinux-i3
