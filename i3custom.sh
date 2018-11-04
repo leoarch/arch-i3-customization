@@ -7,6 +7,9 @@
 # Github Autor do Script : https://github.com/leoarch/arch-install  #
 #===================================================================#
 
+# cores
+_g="\e[32;1m";_o="\e[m"
+
 echo -e "${_g}===> Pacotes necessários para instalar PACKER (AUR)${_o}"; sleep 1
 sudo pacman -S git jshon expac --noconfirm
 
@@ -16,9 +19,9 @@ mv PKGBUILD\?h\=packer PKGBUILD
 makepkg
 sudo pacman -U packer-*.pkg.tar.xz
 
-pacman -S ark compton dunst expac fakeroot feh git gvfs i3-gaps jshon notify-osd p7zip rofi scrot terminus-font termite ttf-dejavu ttf-font-awesome tumbler unzip xorg-xrandr zip
+pacman -S ark compton dunst expac fakeroot feh git gvfs i3-gaps jshon notify-osd p7zip rofi scrot terminus-font termite ttf-dejavu ttf-font-awesome tumbler unzip xorg-xrandr zip --noconfirm
 
-packer -S polybar ttf-font-awesome-4  --noconfirm
+packer -S polybar ttf-font-awesome-4 --noconfirm
 
 echo -e "${_g}===> Baixar os arquivos da configuração e acessando os arquivos de configurações${_o}"; sleep 1
 git clone https://github.com/leoarch/archlinux-i3.git
@@ -27,82 +30,65 @@ echo -e "${_g}===> Entrando na pasta arch-i3-customization${_o}"; sleep 1
 cd archlinux-i3
 
 # i3
-echo -e "${_g}===> Mover os arquivos do ~/.config/i3 e dar permissão${_o}"; sleep 1
-
 if [ -d "${HOME}/.config/i3" ]; then
-	rm -dR ~/.config/i3
+	echo -e "${_g}===> Removendo diretório i3${_o}"; sleep 1
+	rm -rf ~/.config/i3
 fi
 
+echo -e "${_g}===> Mover os arquivos do ~/.config/i3 e dar permissão${_o}"; sleep 1
 mv i3/ ~/.config
 chmod +x ~/.config/i3/basico.sh
 
-# polybar 
-echo -e "${_g}===> Mover os arquivos do ~/.config/polybar e dar permissão${_o}"; sleep 1
-
+# polybar
 if [ -d "${HOME}/.config/polybar" ]; then
-	sudo rm -dR ~/.config/polybar
+	echo -e "${_g}===> Removendo diretório polybar${_o}"; sleep 1
+	sudo rm -rf ~/.config/polybar
 fi
 
+echo -e "${_g}===> Mover os arquivos do ~/.config/polybar e dar permissão${_o}"; sleep 1
 mv polybar/ ~/.config
 chmod +x ~/.config/polybar/launch.sh
 
 # dunst
-echo -e "${_g}===> Mover os arquivos do ~/.config/dunst${_o}"; sleep 1
-
 if [ -d "${HOME}/.config/dunst" ]; then
-	sudo rm -dR ~/.config/dunst
+	echo -e "${_g}===> Removendo diretório dunst${_o}"; sleep 1
+	sudo rm -rf ~/.config/dunst
 fi
 
+echo -e "${_g}===> Mover os arquivos do ~/.config/dunst${_o}"; sleep 1
 mv dunst/ ~/.config
 
 # rofi
-echo -e "${_g}===> Mover os arquivos do ~/.config/rofi${_o}"; sleep 1
-
 if [ -d "${HOME}/.config/rofi" ]; then
-	sudo rm -dR ~/.config/rofi
+	echo -e "${_g}===> Removendo diretório rofi${_o}"; sleep 1
+	sudo rm -rf ~/.config/rofi
 fi
 
+echo -e "${_g}===> Mover os arquivos do ~/.config/rofi${_o}"; sleep 1
 mv rofi/ ~/.config
 mv .dex.rasi ~
 
 # imagens
-echo -e "${_g}===> Mover os arquivos do ~/Imagens${_o}"; sleep 1
-
 if [ -d "${HOME}/Imagens" ]; then
-	sudo rm -dR ~/Imagens
+	echo -e "${_g}===> Removendo diretório Imagens${_o}"; sleep 1
+	sudo rm -rf ~/Imagens
 fi
 
+echo -e "${_g}===> Mover os arquivos do ~/Imagens${_o}"; sleep 1
 mkdir ~/Imagens
 mv W1.png ~/Imagens
 
 # termite
-echo -e "${_g}===> Mover os arquivos do /etc/xdg/termite${_o}"; sleep 1
-
 if [ -d "/etc/xdg/termite" ]; then
-	sudo rm -dR /etc/xdg/termite
+	echo -e "${_g}===> Removendo diretório termite${_o}"; sleep 1
+	sudo rm -rf /etc/xdg/termite
 fi
 
+echo -e "${_g}===> Mover os arquivos do /etc/xdg/termite${_o}"; sleep 1
 sudo mv termite/ /etc/xdg/
 
 echo -e "${_g}===> Criar diretórios necessários${_o}"; sleep 1
 mkdir ~/Imagens/Screenshots
 
 echo -e "${_g}===> Apagando pasta do git${_o}"; sleep 1
-sudo rm -dR ~/archlinux-i3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sudo rm -rf ~/archlinux-i3
