@@ -27,7 +27,7 @@ echo -e "${_g}===> Instalando polybar e font-awesome-4${_o}"; sleep 1
 yay -S polybar ttf-font-awesome-4 --noconfirm
 
 echo -e "${_g}===> Baixar os arquivos da configuração e acessando os arquivos de configurações${_o}"; sleep 1
-git clone https://github.com/leoarch/archlinux-i3.git && cd archlinux-i3
+git clone https://github.com/jirrezdex/archlinux-i3.git && cd archlinux-i3
 
 # i3
 if [ -d "${HOME}/.config/i3" ]; then
